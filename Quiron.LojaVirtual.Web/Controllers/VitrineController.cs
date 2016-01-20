@@ -13,7 +13,7 @@ namespace Quiron.LojaVirtual.Web.Controllers
         private ProdutosRepositorio _repositorio;
         public int ProdutosPorPagina = 4;
         // GET: Vitrine
-        public ActionResult ListaProdutos(string categoria, int pagina = 1)
+        public ViewResult ListaProdutos(string categoria, int pagina = 1)
         {
             _repositorio = new ProdutosRepositorio();
 

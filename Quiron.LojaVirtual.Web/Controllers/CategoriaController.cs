@@ -19,7 +19,9 @@ namespace Quiron.LojaVirtual.Web.Controllers
 
             _repositorio = new ProdutosRepositorio();
 
-            IEnumerable<string> categorias = _repositorio.Produtos.Select(c => c.Categoria).Distinct().OrderBy(c => c);
+            IEnumerable<string> categorias = _repositorio.Produtos
+                .Select(c => c.Categoria).Distinct()
+                .OrderBy(c => c);
 
             return PartialView(categorias);
         }
