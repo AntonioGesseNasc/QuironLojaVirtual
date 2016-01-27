@@ -15,6 +15,7 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<EfDbContext>(null);
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Produto>().ToTable("Produtos");
         }
