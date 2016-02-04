@@ -30,4 +30,11 @@ namespace Quiron.LojaVirtual.Dominio.Entidades
         public string ImagemMimeType { get; set; }
 
     }
+
+    public class Pessoa
+    {
+        public string Nome { get; set; }
+
+        public string SobreNome { get; set; }
+    }
 }
