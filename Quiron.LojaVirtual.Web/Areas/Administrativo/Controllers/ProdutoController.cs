@@ -91,6 +91,7 @@ namespace Quiron.LojaVirtual.Web.Areas.Administrativo.Controllers
             return Json(mensagem,JsonRequestBehavior.AllowGet);
         }
 
+        //[Route("Administrativo/Produto/ObterImagem/{produtoId}")]
         public FileContentResult ObterImagem(int produtoId)
         {
             _repositorio = new ProdutosRepositorio();
