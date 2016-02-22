@@ -22,7 +22,8 @@ namespace Quiron.LojaVirtual.Dominio.Repositorio
         public DbSet<Modalidade> Modalidades { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
         public DbSet<SubGrupo> SubGrupos { get; set; }
-
+        public DbSet<ProdutoVitrine> ProdutoVitrine { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<EfDbContext>(null);
