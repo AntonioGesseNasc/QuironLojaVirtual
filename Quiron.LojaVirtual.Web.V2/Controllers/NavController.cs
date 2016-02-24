@@ -6,28 +6,44 @@ namespace Quiron.LojaVirtual.Web.V2.Controllers
 {
     public class NavController : Controller
     {
-        // GET: Nav
+
+        private ProdutoModeloRepositorio _repositorio;
+        private ProdutosViewModel _model;
+
         public ActionResult Index()
         {
-            return View();
-        }
+            _repositorio = new ProdutoModeloRepositorio();
+            var produtos = _repositorio.ObterProdutosVitrine();
+            _model = new ProdutosViewModel { Produtos = produtos };
 
-        public JsonResult TesteMetodoVitrine()
-        {
-            ProdutoModeloRepositorio repositorio = new ProdutoModeloRepositorio();
-
-            var produtos = repositorio.ObterProdutosVitrine(modadelidade: "0051");
-
-            return Json(produtos, JsonRequestBehavior.AllowGet);
-
+            return View(_model);
         }
 
         [Route("nav/{id}/{marca}")]
-        public ActionResult ObterProdutosPorMarcas(string id)
+        public ActionResult ObterProdutosPorMarcas(string id, string marca)
         {
-            var model = new ProdutosViewModel { Produtos = null };
+            _repositorio = new ProdutoModeloRepositorio();
+            var produtos = _repositorio.ObterProdutosVitrine(marca: id);
+            _model = new ProdutosViewModel { Produtos = produtos, Titulo = marca };
+            return View("Navegacao", _model);
+        }
 
-            return View("Index", model);
+        [Route("nav/times/{id}/{clube}")]
+        public ActionResult ObterProdutosPorClubes(string id, string clube)
+        {
+            _repositorio = new ProdutoModeloRepositorio();
+            var produtos = _repositorio.ObterProdutosVitrine(linha: id);
+            _model = new ProdutosViewModel { Produtos = produtos, Titulo = clube };
+            return View("Navegacao", _model);
+        }
+
+        [Route("nav/genero/{id}/{genero}")]
+        public ActionResult ObterProdutosPorGenero(string id, string genero)
+        {
+            _repositorio = new ProdutoModeloRepositorio();
+            var produtos = _repositorio.ObterProdutosVitrine(genero: id);
+            _model = new ProdutosViewModel { Produtos = produtos, Titulo = genero };
+            return View("Navegacao", _model);
         }
     }
 }
